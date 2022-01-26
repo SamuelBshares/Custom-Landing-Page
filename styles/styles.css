@@ -1,0 +1,125 @@
+@import url(normalize.css);
+@import url("https://fonts.googleapis.com/css2?family=Heebo&family=Oswald:wght@500&display=swap");
+
+body {
+  font-family: "heebo", sans-serif;
+  font-weight: 400;
+  background-color: #fefefd;
+}
+
+/* Typo general */
+
+h1 {
+  font-family: "Oswald", sans-serif;
+  font-weight: 500;
+  font-size: 2.5rem;
+}
+
+@media only screen and (min-width: 35em) {
+  h1 {
+    font-size: 5rem;
+  }
+}
+
+h2 {
+  font-family: "Oswald", sans-serif;
+  font-size: 2rem;
+  border-bottom: 2px solid black;
+  display: inline-block;
+  margin: 1rem 0;
+}
+
+p {
+  line-height: 1.5rem;
+}
+
+/* Layout */
+
+main {
+  margin: 5vh 1rem 5vh;
+}
+
+@media screen and (min-width: 768px) {
+  main {
+    margin: 5vh 5rem 5vh;
+  }
+}
+
+.main__header {
+  min-height: 10rem;
+  padding-top: 3em;
+}
+
+section {
+  position: relative;
+  min-height: 70rem;
+}
+
+/* Nav styles */
+.page__menu ul {
+  padding-left: 0;
+  margin: 0;
+  text-align: end;
+}
+
+.page__menu li {
+  display: inline-flex;
+  padding: 2%;
+}
+
+@media screen and (max-width: 768px) {
+  .page__menu ul {
+    padding-left: 0;
+    margin: 0;
+    text-align: center;
+  }
+}
+.page__menu a {
+  display: inline-block;
+  text-decoration: none;
+  color: #191919;
+  font-family: "Oswald";
+  font-size: 1.2rem;
+}
+
+.page__menu a:hover {
+  color: #cc3333;
+  transition: ease 0.5s all;
+}
+
+/* Header Styles */
+.page__header {
+  background: #fff;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+  transition: all 300ms ease-in-out;
+  filter: drop-shadow(0 -10px 15px rgb(170, 170, 170));
+}
+
+/* Section styling */
+
+section:nth-of-type(even) .landing__container {
+  margin-right: 0;
+  margin-left: auto;
+  text-align: right;
+}
+
+@media only screen and (min-width: 35em) {
+  .landing__container {
+    max-width: 50%;
+    padding: 4em;
+  }
+}
+/* Footer Styles */
+.page__footer {
+  background: #191919;
+  padding: 2em;
+  color: #fff;
+  text-align: center;
+}
+
+.page__footer p {
+  color: #fff;
+}
