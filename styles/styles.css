@@ -56,46 +56,60 @@ section {
 }
 
 /* Nav styles */
-.page__menu ul {
-  padding-left: 0;
-  margin: 0;
-  text-align: end;
+.logo {
+  margin-right: auto;
+  text-decoration: none;
+  cursor: pointer;
+  color: #191919;
+  font-family: "Oswald";
+  font-size: 1.2rem;
+}
+
+#nav__list {
+  list-style: none;
 }
 
 .page__menu li {
-  display: inline-flex;
-  padding: 2%;
+  display: inline-block;
+  margin: 0 3px;
 }
 
+.page__menu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 10%;
+}
 @media screen and (max-width: 768px) {
-  .page__menu ul {
-    padding-left: 0;
-    margin: 0;
+  .page__menu {
     text-align: center;
+    padding: 0 5%;
+  }
+  .logo {
+    display: none;
   }
 }
-.page__menu a {
-  display: inline-block;
+#nav__list a {
   text-decoration: none;
   color: #191919;
   font-family: "Oswald";
   font-size: 1.2rem;
 }
 
-.page__menu a:hover {
+#nav__list a:hover {
   color: #cc3333;
   transition: ease 0.5s all;
 }
 
 /* Header Styles */
 .page__header {
-  background: #fff;
+  background: #fefefd;
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
   z-index: 9999;
   transition: all 300ms ease-in-out;
-  filter: drop-shadow(0 -10px 15px rgb(170, 170, 170));
 }
 
 /* Section styling */
@@ -122,4 +136,13 @@ section:nth-of-type(even) .landing__container {
 
 .page__footer p {
   color: #fff;
+}
+/* scroll  */
+
+.scroll-down .page__header {
+  transform: translate3d(0, -100%, 0);
+}
+
+.scroll-up .page__header {
+  filter: drop-shadow(0 -10px 20px rgb(170, 170, 170));
 }
