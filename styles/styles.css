@@ -24,7 +24,7 @@ h1 {
 h2 {
   font-family: "Oswald", sans-serif;
   font-size: 2rem;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid #070f1c;
   display: inline-block;
   margin: 1rem 0;
 }
@@ -145,4 +145,9 @@ section:nth-of-type(even) .landing__container {
 
 .scroll-up .page__header {
   filter: drop-shadow(0 -10px 20px rgb(170, 170, 170));
+  border-bottom: 5px solid #fefefd;
+}
+
+.scroll-level .page__header {
+  border-bottom: 2px solid #070f1c;
 }

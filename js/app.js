@@ -26,7 +26,7 @@ const offset = (section) => Math.floor(section.getBoundingClientRect().top);
 //remove active class
 const removeActive = (section) => {
   section.classList.remove("your-active-class");
-  section.style.cssText = "background: none";
+  section.style.cssText = "border: none";
 };
 // add acive class
 const addActive = (condition, section) => {
@@ -35,7 +35,7 @@ const addActive = (condition, section) => {
     section.style.cssText = "border: 5px solid #cc3333;";
   }
 };
-
+//handles add/remove of classes in and outer
 const sectionActivation = () => {
   sections.forEach((section) => {
     const elementOffset = offset(section);
@@ -59,11 +59,13 @@ window.addEventListener("scroll", () => {
 
   if (currentScroll <= 0) {
     body.classList.remove("scroll-up");
+    body.classList.add("scroll-level");
   }
 
   if (currentScroll > lastScroll && !body.classList.contains("scroll-down")) {
     body.classList.remove("scroll-up");
     body.classList.add("scroll-down");
+    body.classList.remove("scroll-level");
   }
 
   if (currentScroll < lastScroll && body.classList.contains("scroll-down")) {
@@ -74,7 +76,23 @@ window.addEventListener("scroll", () => {
   lastScroll = currentScroll;
 });
 
-navigation.addEventListener("click", (navigation) => {
-  navigation.preventDefault();
-  window.scrollTo({ top: 1000, behavior: "smooth" });
-});
+//Scroll to section on nav click
+
+const smoothScroll = () => {
+  const links = document.querySelectorAll(".menu__link");
+  for (const link of links) {
+    link.addEventListener("click", clickHandler);
+  }
+  function clickHandler(e) {
+    e.preventDefault();
+    const href = this.getAttribute("href");
+    const top = document.querySelector(href).offsetTop;
+
+    scrollTo({
+      top: top,
+      behavior: "smooth",
+    });
+  }
+};
+
+smoothScroll();
