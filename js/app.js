@@ -41,9 +41,9 @@ const addActive = (condition, section) => {
 //handles add/remove of classes in and outer
 const sectionActivation = () => {
   sections.forEach((section) => {
-    const elementOffset = offset(section);
+    const sectionOffset = offset(section);
 
-    isInviewport = () => elementOffset < 150 && elementOffset >= -50;
+    isInviewport = () => sectionOffset < 200 && sectionOffset > -200;
 
     removeActive(section);
     addActive(isInviewport(), section);
