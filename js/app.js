@@ -1,38 +1,41 @@
 // Defining Global Variables
 const navigation = document.getElementById("nav__list");
 const sections = document.querySelectorAll("section");
+const topBtn = document.getElementById("scrollBtn");
 
-// Building navigation
-const navBar = () => {
-  let navHead = "";
-  //loop all section
+// // Building navigation
+const navCreate = () => {
   sections.forEach((section) => {
-    const sectionId = section.id;
-    const sectionData = section.dataset.nav;
+    const li = document.createElement("li");
+    const a = document.createElement("a");
+    const navbarText = document.createTextNode(section.dataset.nav);
+    a.href = `#${section.id}`;
+    a.classList.add("menu__link");
 
-    navHead += `<li><a class="menu__link" href="#${sectionId}">${sectionData}</a></li>`;
+    a.appendChild(navbarText);
+    li.appendChild(a);
+    navigation.appendChild(li);
   });
-
-  navigation.innerHTML = navHead;
 };
 
-navBar();
+navCreate();
 
 // Add class 'active' to section when near top of viewport
 
-// find the largest value to the section number
-const offset = (section) => Math.floor(section.getBoundingClientRect().top);
+// Gets top position of section elements in viewport
+const offset = (section) => section.getBoundingClientRect().top;
 
-//remove active class
+//removes active class
 const removeActive = (section) => {
   section.classList.remove("your-active-class");
   section.style.cssText = "border: none";
 };
-// add acive class
+// add active class
 const addActive = (condition, section) => {
   if (condition) {
     section.classList.add("your-active-class");
-    section.style.cssText = "border: 5px solid #cc3333;";
+    section.style.cssText =
+      "border: 5px solid #ff3d33; transition: all 300ms ease; transition-delay: 0.3s";
   }
 };
 //handles add/remove of classes in and outer
@@ -40,10 +43,10 @@ const sectionActivation = () => {
   sections.forEach((section) => {
     const elementOffset = offset(section);
 
-    inviewport = () => elementOffset < 150 && elementOffset >= -150;
+    isInviewport = () => elementOffset < 150 && elementOffset >= -50;
 
     removeActive(section);
-    addActive(inviewport(), section);
+    addActive(isInviewport(), section);
   });
 };
 
@@ -96,3 +99,33 @@ const smoothScroll = () => {
 };
 
 smoothScroll();
+
+//Scroll to top button
+//button appears if scrolled to below half of the page
+window.addEventListener("scroll", () => {
+  const scroll = document.body.scrollTop;
+  if (
+    scroll > window.innerHeight / 1.5 ||
+    document.documentElement.scrollTop > window.innerHeight / 1.5
+  ) {
+    topBtn.style.display = "block";
+    window.setTimeout(() => {
+      topBtn.style.transition = "opacity 0.3s ease 0.3s";
+      topBtn.style.opacity = "1";
+    }, 300);
+  } else {
+    window.setTimeout(() => {
+      topBtn.style.transition = "opacity 0.3s ease 0.3s";
+      topBtn.style.opacity = "0";
+    }, 300);
+  }
+});
+
+//scroll on top if the button is clicked
+
+topBtn.addEventListener("click", () => {
+  scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+});
