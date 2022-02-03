@@ -104,3 +104,12 @@ section:nth-of-type(even) .landing__container {
   border-radius: 10%;
   font-size: 1.5rem;
 }
+
+.active.unactive {
+  opacity: 1;
+}
+
+.unactive {
+  opacity: 0;
+  transition: opacity 300ms ease-in;
+}

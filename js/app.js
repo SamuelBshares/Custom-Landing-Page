@@ -20,38 +20,24 @@ const navCreate = () => {
 
 navCreate();
 
-// Add class 'active' to section when near top of viewport
+// Set active class on viewport
+const vpHeight = window.innerHeight;
 
-// Gets top position of section elements in viewport
-const offset = (section) => section.getBoundingClientRect().top;
-
-//removes active class
-const removeActive = (section) => {
-  section.classList.remove("your-active-class");
-  section.style.cssText = "border: none";
-};
-// add active class
-const addActive = (condition, section) => {
-  if (condition) {
-    section.classList.add("your-active-class");
-    section.style.cssText =
-      "border: 5px solid #ff3d33; transition: all 300ms ease; transition-delay: 0.3s";
-  }
-};
-//handles add/remove of classes in and outer
-const sectionActivation = () => {
+const classActivation = () => {
   sections.forEach((section) => {
-    const sectionOffset = offset(section);
-
-    isInviewport = () => sectionOffset < 200 && sectionOffset > -200;
-
-    removeActive(section);
-    addActive(isInviewport(), section);
+    const sectionPos = section.getBoundingClientRect();
+    if (sectionPos.top < vpHeight / 2 && sectionPos.top > -(vpHeight / 2)) {
+      section.classList.add("active");
+    } else {
+      section.classList.add("unactive");
+    }
+    if (sectionPos.bottom < 0 || sectionPos.top > vpHeight) {
+      section.classList.remove("active");
+    }
   });
 };
 
-window.addEventListener("scroll", sectionActivation);
-
+window.addEventListener("scroll", classActivation);
 // Navbar hiding on scroll
 
 const body = document.body;
